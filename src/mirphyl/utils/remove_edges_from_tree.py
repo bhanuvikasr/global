@@ -45,8 +45,8 @@ if __name__ == '__main__':
         with open(sys.argv[2], 'rb') as f:
             reader = csv.reader(f)
             l = list(reader)
-            t_list = [float(x[0]) for x in l[:2000]]
-        print "Finished reading. Made a list of length", len(t_list)
+            t_list = [float(x[0]) if is_number(x[0]) else 0.0 for x in l]
+        print "Finished reading. Made a list of length", len(t_list) #, t_list[553674], t_list[553673], t_list[553672]
         if len(t_list)<len(trees):
             print "Not enough threshold values"
 
@@ -85,7 +85,7 @@ if __name__ == '__main__':
         else:
             edges = tree.edges(filt)
             all_edges = tree.edges()
-            print >>sys.stderr, len(edges), "edges will be removed", " out of", len(all_edges)
+            # print >>sys.stderr, len(edges), "edges will be removed", " out of", len(all_edges)
             for e in edges:
                 #print e.label
                 e.collapse()
