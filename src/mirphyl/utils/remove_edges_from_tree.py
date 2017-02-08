@@ -74,8 +74,8 @@ if __name__ == '__main__':
 
         if remove_least_probable:
             edges_nonleaf = tree.edges(filt_nonleaf)
-            # print t, len(edges_nonleaf), t*len(edges_nonleaf)
-            least_probable_edges = heapq.nsmallest(int(t*len(edges_nonleaf)),edges_nonleaf, key=lambda e: e.label)
+            # print t, len(edges_nonleaf), max(int(2.0*t*len(edges_nonleaf)),len(edges_nonleaf)
+            least_probable_edges = heapq.nsmallest(min(int(round(1.0*t*len(edges_nonleaf))),len(edges_nonleaf)),edges_nonleaf, key=lambda e: e.label)
             #print len(edges_nonleaf)
 
             # print "number of least_probable_edges", len(least_probable_edges)
